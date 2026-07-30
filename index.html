@@ -404,11 +404,17 @@
 
   .carousel-viewport {
     position: relative;
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 5 / 3;
     border-radius: 14px;
     overflow: hidden;
     background: #111214;
     border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  @media (min-width: 641px) {
+    .carousel-viewport {
+      aspect-ratio: unset;
+    }
   }
 
   .carousel-slide {
@@ -1043,6 +1049,7 @@
       gridView.classList.remove('active');
       figmaView.classList.add('active');
       window.scrollTo(0, 0);
+      syncCarouselHeight();
     }
 
     function showGridView() {
@@ -1065,6 +1072,20 @@
       e.preventDefault();
       showGridView();
     });
+
+    /* ---------- align image height with sidebar (Add to Linear button) ---------- */
+    var sidebarEl = document.querySelector('#figmaView .sidebar');
+    var carouselViewport = document.getElementById('carouselViewport');
+
+    function syncCarouselHeight() {
+      if (window.innerWidth > 640) {
+        carouselViewport.style.height = sidebarEl.offsetHeight + 'px';
+      } else {
+        carouselViewport.style.height = '';
+      }
+    }
+
+    window.addEventListener('resize', syncCarouselHeight);
 
     /* ---------- carousel ---------- */
     var slides = document.querySelectorAll('.carousel-slide');
