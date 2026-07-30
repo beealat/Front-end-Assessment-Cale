@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Figma Integration – Linear</title>
+<title>Key integrations to enhance your Linear experience</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -200,7 +200,147 @@
     display: flex;
   }
 
-  /* ---------- page wrapper ---------- */
+  /* ---------- view visibility ---------- */
+  .view {
+    display: none;
+  }
+
+  .view.active {
+    display: block;
+  }
+
+  /* ---------- grid view: hero ---------- */
+  .hero {
+    text-align: center;
+    padding: 40px 20px 60px;
+  }
+
+  .hero .breadcrumb {
+    font-size: 14px;
+    color: #7d7d7d;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+    line-height: 1.2;
+    font-weight: 600;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ---------- grid view: card grid ---------- */
+  .grid-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: #111214;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    background: #1c1d22;
+  }
+
+  .card:hover .card-arrow {
+    border-color: transparent;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .card:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+
+  .card-icon {
+    aspect-ratio: 7 / 5;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-icon svg {
+    width: 56px;
+    height: 56px;
+    fill: #ffffff;
+  }
+
+  .card-icon svg.icon-stroke {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 1.6;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 18px 20px 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex: 1;
+  }
+
+  .card-text {
+    min-width: 0;
+  }
+
+  .card-text .category {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #7d7d7d;
+    margin-bottom: 4px;
+  }
+
+  .card-text .title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .title-tablet,
+  .title-mobile {
+    display: none;
+  }
+
+  .card-arrow {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-arrow svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: #b4b4b4;
+    stroke-width: 2;
+  }
+
+  /* ---------- detail view: page wrapper ---------- */
   .page {
     max-width: 1000px;
     margin: 0 auto;
@@ -212,6 +352,15 @@
     font-weight: var(--weight-regular);
     color: var(--text-tertiary);
     margin-bottom: 18px;
+  }
+
+  .breadcrumb a {
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb a:hover {
+    color: #ffffff;
+    text-decoration: underline;
   }
 
   .page h1 {
@@ -229,7 +378,7 @@
     margin: 30px 0 40px;
   }
 
-  /* ---------- content grid ---------- */
+  /* ---------- detail view: content grid ---------- */
   .detail-grid {
     display: grid;
     grid-template-columns: 1fr 260px;
@@ -449,6 +598,23 @@
 
   /* ---------- tablet ---------- */
   @media (max-width: 900px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .title-desktop,
+    .title-mobile {
+      display: none;
+    }
+
+    .title-tablet {
+      display: inline;
+    }
+
+    .hero h1 {
+      font-size: 34px;
+    }
+
     header.navbar {
       padding: 16px 24px;
     }
@@ -518,6 +684,35 @@
       justify-content: center;
     }
 
+    .hero {
+      padding: 30px 20px 40px;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+    }
+
+    .grid-wrapper {
+      padding: 0 20px 60px;
+    }
+
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card-icon {
+      aspect-ratio: 4 / 3;
+    }
+
+    .title-desktop,
+    .title-tablet {
+      display: none;
+    }
+
+    .title-mobile {
+      display: inline;
+    }
+
     .page {
       padding: 26px 20px 60px;
     }
@@ -554,7 +749,7 @@
 
   <div class="navbar-wrapper">
     <header class="navbar">
-      <a href="#" class="logo">
+      <a href="#" class="logo" id="logoLink">
         <svg class="logo-icon" width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill="#ffffff" d="M1.22541 61.5228c-.2225-.9485.90748-1.5459 1.59638-.857L39.3342 97.1782c.6889.6889.0915 1.8189-.857 1.5964C20.0515 94.4522 5.54779 79.9485 1.22541 61.5228ZM.00189135 46.8891c-.01764375.2833.08887215.5599.28957165.7606L52.3503 99.7085c.2007.2007.4773.3075.7606.2896 2.3692-.1476 4.6938-.46 6.9624-.9259.7645-.157 1.0301-1.0963.4782-1.6481L2.57595 39.4485c-.55186-.5519-1.49117-.2863-1.648174.4782-.465915 2.2686-.77832 4.5932-.92588465 6.9624ZM4.21093 29.7054c-.16649.3738-.08169.8106.20765 1.1l64.77602 64.776c.2894.2894.7262.3742 1.1.2077 1.7861-.7956 3.5171-1.6927 5.1855-2.684.5521-.328.6373-1.0867.1832-1.5407L8.43566 24.3367c-.45409-.4541-1.21271-.3689-1.54074.1832-.99132 1.6684-1.88843 3.3994-2.68399 5.1855ZM12.6587 18.074c-.3701-.3701-.393-.9637-.0443-1.3541C21.7795 6.45931 35.1114 0 49.9519 0 77.5927 0 100 22.4073 100 50.0481c0 14.8405-6.4593 28.1724-16.7199 37.3375-.3903.3487-.984.3258-1.3542-.0443L12.6587 18.074Z"/>
         </svg>
@@ -594,8 +789,147 @@
     <a href="#">Contact</a>
   </nav>
 
-  <main class="page">
-    <p class="breadcrumb">Integrations / Figma</p>
+  <!-- ================= GRID VIEW ================= -->
+  <main class="view active" id="gridView">
+    <section class="hero">
+      <p class="breadcrumb">Integrations / Essentials</p>
+      <h1>Key integrations to&nbsp;enhance&nbsp;your Linear&nbsp;experience</h1>
+    </section>
+
+    <section class="grid-wrapper">
+      <div class="card-grid">
+
+        <a class="card" href="https://linear.app/integrations/github" target="_blank" rel="noopener">
+          <div class="card-icon">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+              0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01
+              1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+              0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04
+              2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65
+              3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8
+              c0-4.42-3.58-8-8-8z"/></svg>
+          </div>
+          <div class="card-footer">
+            <div class="card-text">
+              <span class="category">GitHub</span>
+              <span class="title">
+                <span class="title-desktop">Connect GitHub to automate PR workflows,...</span>
+                <span class="title-tablet">Connect GitHub to automate PR workflows, review code in Linea...</span>
+                <span class="title-mobile">Connect GitHub to automate PR workflows, review code i...</span>
+              </span>
+            </div>
+            <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+
+        <a class="card" href="https://linear.app/integrations/slack" target="_blank" rel="noopener">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527
+              2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528
+              2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1
+              8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521
+              2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528
+              2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527
+              0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1
+              2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523
+              2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
+          </div>
+          <div class="card-footer">
+            <div class="card-text">
+              <span class="category">Slack</span>
+              <span class="title">Create issues from Slack messages and sync threads</span>
+            </div>
+            <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+
+        <a class="card" href="https://linear.app/integrations/gitlab" target="_blank" rel="noopener">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M23.6004 9.5927l-.0337-.0862L20.3.9814a.851.851 0 0 0-.3362-.405.8748.8748
+              0 0 0-.9997.0539.8748.8748 0 0 0-.29.4399l-2.2055 6.748H7.5375l-2.2057-6.748a.8573.8573 0 0 0-.29-.4412.8748.8748
+              0 0 0-.9997-.0539.8585.8585 0 0 0-.3362.4051L.4332 9.5064l-.0325.0862a6.0657 6.0657 0 0 0 2.0119 7.0105l.0113.0087.03.0213
+              4.976 3.7264 2.462 1.8633 1.4995 1.1321a1.0085 1.0085 0 0 0 1.2197 0l1.4995-1.1321 2.462-1.8633 5.006-3.7501.0125-.01a6.0682
+              6.0682 0 0 0 2.0094-7.003z"/></svg>
+          </div>
+          <div class="card-footer">
+            <div class="card-text">
+              <span class="category">GitLab</span>
+              <span class="title">Automate your Merge Request workflow</span>
+            </div>
+            <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+
+        <a class="card" href="#figma" id="figmaCard">
+          <div class="card-icon">
+            <svg class="icon-stroke" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="15" cy="12" r="3"/>
+              <rect x="6" y="3" width="12" height="6" rx="3"/>
+              <path d="M9 9a3 3 0 0 0 0 6h3m-3 0a3 3 0 1 0 3 3v-15"/>
+            </svg>
+          </div>
+          <div class="card-footer">
+            <div class="card-text">
+              <span class="category">Figma</span>
+              <span class="title">Create and link issues directly from Figma</span>
+            </div>
+            <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+
+        <a class="card" href="https://linear.app/integrations/intercom" target="_blank" rel="noopener">
+          <div class="card-icon">
+            <svg viewBox="0 0 448 512"><path d="M392 32H56C25.1 32 0 57.1 0 88v336c0 30.9 25.1 56 56 56h336c30.9 0 56-25.1
+              56-56V88c0-30.9-25.1-56-56-56zm-108.3 82.1c0-19.8 29.9-19.8 29.9 0v199.5c0 19.8-29.9 19.8-29.9
+              0V114.1zm-74.6-7.5c0-19.8 29.9-19.8 29.9 0v216.5c0 19.8-29.9 19.8-29.9 0V106.6zm-74.7 7.5c0-19.8
+              29.9-19.8 29.9 0v199.5c0 19.8-29.9 19.8-29.9 0V114.1zM59.7 144c0-19.8 29.9-19.8 29.9 0v134.3c0
+              19.8-29.9 19.8-29.9 0V144zm323.4 227.8c-72.8 63-241.7 65.4-318.1 0-15-12.8 4.4-35.5 19.4-22.7 65.9
+              55.3 216.1 53.9 279.3 0 14.9-12.9 34.3 9.8 19.4 22.7zm5.2-93.5c0 19.8-29.9 19.8-29.9 0V144c0-19.8
+              29.9-19.8 29.9 0v134.3z"/></svg>
+          </div>
+          <div class="card-footer">
+            <div class="card-text">
+              <span class="category">Intercom</span>
+              <span class="title">
+                <span class="title-desktop">Keep a tight feedback loop with customers and...</span>
+                <span class="title-tablet">Keep a tight feedback loop with customers and streamline bug...</span>
+                <span class="title-mobile">Keep a tight feedback loop with customers and streamli...</span>
+              </span>
+            </div>
+            <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+
+        <a class="card" href="https://linear.app/integrations/google-sheets" target="_blank" rel="noopener">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 2h8l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" fill="#ffffff"/>
+              <path d="M14 2v5h5z" fill="#8a8a8a"/>
+              <rect x="8.5" y="11" width="7" height="6.2" rx="0.6" fill="none" stroke="#111214" stroke-width="1"/>
+              <line x1="8.5" y1="14.1" x2="15.5" y2="14.1" stroke="#111214" stroke-width="1"/>
+              <line x1="12" y1="11" x2="12" y2="17.2" stroke="#111214" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="card-footer">
+            <div class="card-text">
+              <span class="category">Google Sheets</span>
+              <span class="title">
+                <span class="title-desktop">Build custom dashboards and analytics from issue...</span>
+                <span class="title-tablet">Build custom dashboards and analytics from issue and project...</span>
+                <span class="title-mobile">Build custom dashboards and analytics from issue and...</span>
+              </span>
+            </div>
+            <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FIGMA DETAIL VIEW ================= -->
+  <main class="view page" id="figmaView">
+    <p class="breadcrumb"><a href="#" id="backToGrid">Integrations</a> / Figma</p>
     <h1>Create and link issues directly from Figma</h1>
     <hr class="top-rule">
 
@@ -687,14 +1021,49 @@
   </main>
 
   <script>
-    var btn = document.getElementById('hamburgerBtn');
+    var hamburgerBtn = document.getElementById('hamburgerBtn');
     var menu = document.getElementById('mobileMenu');
 
-    btn.addEventListener('click', function () {
+    hamburgerBtn.addEventListener('click', function () {
       var isOpen = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', isOpen);
+      hamburgerBtn.setAttribute('aria-expanded', isOpen);
     });
 
+    /* ---------- view switching ---------- */
+    var gridView = document.getElementById('gridView');
+    var figmaView = document.getElementById('figmaView');
+    var figmaCard = document.getElementById('figmaCard');
+    var backToGrid = document.getElementById('backToGrid');
+    var logoLink = document.getElementById('logoLink');
+
+    function showFigmaView() {
+      gridView.classList.remove('active');
+      figmaView.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function showGridView() {
+      figmaView.classList.remove('active');
+      gridView.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    figmaCard.addEventListener('click', function (e) {
+      e.preventDefault();
+      showFigmaView();
+    });
+
+    backToGrid.addEventListener('click', function (e) {
+      e.preventDefault();
+      showGridView();
+    });
+
+    logoLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      showGridView();
+    });
+
+    /* ---------- carousel ---------- */
     var slides = document.querySelectorAll('.carousel-slide');
     var captionText = document.getElementById('captionText');
     var prevBtn = document.getElementById('prevBtn');
