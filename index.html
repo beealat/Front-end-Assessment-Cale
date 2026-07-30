@@ -412,7 +412,6 @@
     overflow: hidden;
     background: #111214;
     border: 1px solid rgba(255, 255, 255, 0.06);
-    touch-action: pan-y;
   }
 
   @media (min-width: 641px) {
@@ -421,22 +420,15 @@
     }
   }
 
-  /* Track holds all slides in a row; sliding it is what produces the
-     Stories-style swipe (slides physically move, they don't just fade). */
-  .carousel-track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    /* JS drives transform for both live-drag and snap; this transition
-       is the default "snap back / settle" easing when JS re-enables it. */
-    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
-    will-change: transform;
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
   }
 
-  .carousel-slide {
-    flex: 0 0 100%;
-    width: 100%;
-    height: 100%;
+  .carousel-slide.active {
+    opacity: 1;
   }
 
   .carousel-slide img {
@@ -444,44 +436,11 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    -webkit-user-drag: none;
-    user-select: none;
-  }
-
-  /* Story-style progress bars at the top of the image, like IG stories */
-  .carousel-progress {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    display: flex;
-    gap: 4px;
-    z-index: 2;
-  }
-
-  .carousel-progress-seg {
-    flex: 1;
-    height: 3px;
-    border-radius: 2px;
-    background: rgba(255, 255, 255, 0.3);
-    overflow: hidden;
-  }
-
-  .carousel-progress-seg span {
-    display: block;
-    height: 100%;
-    width: 0%;
-    background: #ffffff;
-    transition: width 0.3s ease;
-  }
-
-  .carousel-progress-seg.filled span {
-    width: 100%;
   }
 
   .carousel-caption {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 16px;
     margin-top: 14px;
@@ -492,10 +451,6 @@
     font-style: italic;
     color: #7d7d7d;
     line-height: 1.5;
-    /* Fixed reservation for up to 2 lines so caption length never
-       changes the height of this block, which is what was pushing
-       Overview up/down when swiping. */
-    min-height: calc(1.5em * 2);
   }
 
   .carousel-nav {
@@ -744,6 +699,10 @@
       padding: 30px 20px 40px;
     }
 
+    .hero .breadcrumb {
+      margin-top: 0.5rem;
+    }
+
     .hero h1 {
       font-size: 26px;
     }
@@ -795,12 +754,8 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Fixed .5in (48px) gap from the carousel block down to the Overview
-       heading. Because .caption-text has a reserved min-height above,
-       this distance stays constant no matter which slide is active or
-       how many lines its caption wraps to. */
     .carousel {
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
 
     .mobile-break {
@@ -872,7 +827,7 @@
   <main class="view active" id="gridView">
     <section class="hero">
       <p class="breadcrumb">Integrations / Essentials</p>
-      <h1>Key integrations to enhance<br>your Linear experience</h1>
+      <h1>Key integrations<br>to enhance your<br>Linear experience</h1>
     </section>
 
     <section class="grid-wrapper">
@@ -1018,25 +973,15 @@
 
         <div class="carousel">
           <div class="carousel-viewport" id="carouselViewport">
-
-            <div class="carousel-progress" id="carouselProgress">
-              <div class="carousel-progress-seg"><span></span></div>
-              <div class="carousel-progress-seg"><span></span></div>
-              <div class="carousel-progress-seg"><span></span></div>
+            <div class="carousel-slide active">
+              <img src="https://webassets.linear.app/images/ornj730p/production/f773d7460a1c863fe058c0fff4d58ba4393fe8c0-1600x960.png?q=95&auto=format&dpr=2" alt="Linear and Figma logo showing both interfaces connected">
             </div>
-
-            <div class="carousel-track" id="carouselTrack">
-              <div class="carousel-slide">
-                <img src="https://webassets.linear.app/images/ornj730p/production/f773d7460a1c863fe058c0fff4d58ba4393fe8c0-1600x960.png?q=95&auto=format&dpr=2" alt="Linear and Figma logo showing both interfaces connected" draggable="false">
-              </div>
-              <div class="carousel-slide">
-                <img src="https://webassets.linear.app/images/ornj730p/production/9bde40b4998cd0e1ffe81e212b1bb795bffd9d43-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing the option to create issues in Linear" draggable="false">
-              </div>
-              <div class="carousel-slide">
-                <img src="https://webassets.linear.app/images/ornj730p/production/d91fe6cb8a23eb371fa6981615b8212e75075403-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing how to update status, assign issues, and filter and sort issues" draggable="false">
-              </div>
+            <div class="carousel-slide">
+              <img src="https://webassets.linear.app/images/ornj730p/production/9bde40b4998cd0e1ffe81e212b1bb795bffd9d43-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing the option to create issues in Linear">
             </div>
-
+            <div class="carousel-slide">
+              <img src="https://webassets.linear.app/images/ornj730p/production/d91fe6cb8a23eb371fa6981615b8212e75075403-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing how to update status, assign issues, and filter and sort issues">
+            </div>
           </div>
           <div class="carousel-caption">
             <span class="caption-text" id="captionText">Streamline work across design and engineering with the Figma plugin for Linear</span>
@@ -1167,14 +1112,11 @@
 
     window.addEventListener('resize', syncCarouselHeight);
 
-    /* ---------- carousel (Stories-style, drag-following swipe) ---------- */
-    var track = document.getElementById('carouselTrack');
+    /* ---------- carousel ---------- */
     var slides = document.querySelectorAll('.carousel-slide');
-    var progressSegs = document.querySelectorAll('.carousel-progress-seg');
     var captionText = document.getElementById('captionText');
     var prevBtn = document.getElementById('prevBtn');
     var nextBtn = document.getElementById('nextBtn');
-    var slideCount = slides.length;
     var current = 0;
 
     var captions = [
@@ -1183,100 +1125,34 @@
       'Update status and assign issues from the canvas'
     ];
 
-    function updateChrome() {
+    function showSlide(index) {
+      slides[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
       captionText.textContent = captions[current];
-      progressSegs.forEach(function (seg, i) {
-        seg.classList.toggle('filled', i <= current);
-      });
     }
 
-    function setTrackTransform(percent, animate) {
-      track.style.transition = animate ? 'transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1)' : 'none';
-      track.style.transform = 'translateX(' + percent + '%)';
-    }
+    prevBtn.addEventListener('click', function () { showSlide(current - 1); });
+    nextBtn.addEventListener('click', function () { showSlide(current + 1); });
 
-    function goTo(index, animate) {
-      current = Math.max(0, Math.min(slideCount - 1, index));
-      setTrackTransform(current * -100, animate !== false);
-      updateChrome();
-    }
-
-    prevBtn.addEventListener('click', function () { goTo(current - 1); });
-    nextBtn.addEventListener('click', function () { goTo(current + 1); });
-
-    /* ---------- drag / swipe: track follows the finger live, like IG Stories ---------- */
-    var dragging = false;
-    var startX = 0;
-    var deltaX = 0;
-    var viewportWidth = carouselViewport.offsetWidth;
-
-    function onDragStart(clientX) {
-      dragging = true;
-      startX = clientX;
-      deltaX = 0;
-      viewportWidth = carouselViewport.offsetWidth;
-      track.style.transition = 'none';
-    }
-
-    function onDragMove(clientX) {
-      if (!dragging) return;
-      deltaX = clientX - startX;
-
-      // Rubber-band resistance at the ends, so it doesn't slide past
-      // the first/last slide without limit.
-      var atStart = current === 0 && deltaX > 0;
-      var atEnd = current === slideCount - 1 && deltaX < 0;
-      var resisted = (atStart || atEnd) ? deltaX * 0.35 : deltaX;
-
-      var basePercent = current * -100;
-      var dragPercent = (resisted / viewportWidth) * 100;
-      track.style.transform = 'translateX(calc(' + basePercent + '% + ' + resisted + 'px))';
-    }
-
-    function onDragEnd() {
-      if (!dragging) return;
-      dragging = false;
-
-      var threshold = viewportWidth * 0.18;
-      if (deltaX <= -threshold && current < slideCount - 1) {
-        goTo(current + 1);
-      } else if (deltaX >= threshold && current > 0) {
-        goTo(current - 1);
-      } else {
-        goTo(current); // snap back to the current slide
-      }
-      deltaX = 0;
-    }
+    /* ---------- swipe support ---------- */
+    var touchStartX = 0;
+    var touchEndX = 0;
 
     carouselViewport.addEventListener('touchstart', function (e) {
-      onDragStart(e.changedTouches[0].screenX);
+      touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    carouselViewport.addEventListener('touchmove', function (e) {
-      onDragMove(e.changedTouches[0].screenX);
+    carouselViewport.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var delta = touchEndX - touchStartX;
+      var threshold = 40;
+      if (delta > threshold) {
+        showSlide(current - 1);
+      } else if (delta < -threshold) {
+        showSlide(current + 1);
+      }
     }, { passive: true });
-
-    carouselViewport.addEventListener('touchend', function () {
-      onDragEnd();
-    }, { passive: true });
-
-    // Mouse support too, so it's testable on desktop.
-    carouselViewport.addEventListener('mousedown', function (e) {
-      onDragStart(e.clientX);
-    });
-    window.addEventListener('mousemove', function (e) {
-      if (dragging) onDragMove(e.clientX);
-    });
-    window.addEventListener('mouseup', function () {
-      onDragEnd();
-    });
-
-    window.addEventListener('resize', function () {
-      viewportWidth = carouselViewport.offsetWidth;
-      goTo(current, false);
-    });
-
-    updateChrome();
   </script>
 
 </body>
