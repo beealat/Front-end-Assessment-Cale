@@ -378,6 +378,10 @@
     margin: 30px 0 40px;
   }
 
+  .mobile-break {
+    display: none;
+  }
+
   /* ---------- detail view: content grid ---------- */
   .detail-grid {
     display: grid;
@@ -749,6 +753,24 @@
     .carousel {
       margin-bottom: 24px;
     }
+
+    .mobile-break {
+      display: block;
+    }
+
+    .meta-block.category,
+    .meta-block.docs,
+    .add-btn {
+      display: none;
+    }
+
+    .carousel-nav {
+      display: none;
+    }
+
+    .carousel-caption {
+      justify-content: flex-start;
+    }
   }
 
 </style>
@@ -938,7 +960,7 @@
   <!-- ================= FIGMA DETAIL VIEW ================= -->
   <main class="view page" id="figmaView">
     <p class="breadcrumb"><a href="#" id="backToGrid">Integrations</a> / Figma</p>
-    <h1>Create and link issues directly from Figma</h1>
+    <h1>Create and link issues<br class="mobile-break">directly from Figma</h1>
     <hr class="top-rule">
 
     <div class="detail-grid">
@@ -1005,14 +1027,14 @@
           <a class="meta-value" href="https://figma.com" target="_blank" rel="noopener">figma.com</a>
         </div>
 
-        <div class="meta-block">
+        <div class="meta-block category">
           <div class="meta-label">Category</div>
           <div class="meta-value">
             <a href="#">Media &amp; Design</a>, <a href="#">Linear crafted</a>, <a href="#">Essentials</a>
           </div>
         </div>
 
-        <div class="meta-block">
+        <div class="meta-block docs">
           <div class="meta-label">Docs</div>
           <a class="meta-value" href="#">Figma Docs</a>
         </div>
@@ -1108,6 +1130,25 @@
 
     prevBtn.addEventListener('click', function () { showSlide(current - 1); });
     nextBtn.addEventListener('click', function () { showSlide(current + 1); });
+
+    /* ---------- swipe support ---------- */
+    var touchStartX = 0;
+    var touchEndX = 0;
+
+    carouselViewport.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carouselViewport.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var delta = touchEndX - touchStartX;
+      var threshold = 40;
+      if (delta > threshold) {
+        showSlide(current - 1);
+      } else if (delta < -threshold) {
+        showSlide(current + 1);
+      }
+    }, { passive: true });
   </script>
 
 </body>
