@@ -292,7 +292,7 @@
 
   .card-footer {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     gap: 10px;
     padding: 22px 20px 26px;
@@ -309,7 +309,7 @@
     font-size: 13px;
     font-weight: 600;
     color: #7d7d7d;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
   .card-text .title {
@@ -347,7 +347,7 @@
   .page {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 44px 40px 100px;
+    padding: 77px 40px 100px;
   }
 
   .breadcrumb {
@@ -378,7 +378,7 @@
 
   .top-rule {
     border: none;
-    border-top: 1px solid var(--border-default);
+    border-top: 2px solid rgba(255, 255, 255, 0.16);
     margin: 30px 0 40px;
   }
 
@@ -622,7 +622,7 @@
 
   .sidebar-rule {
     border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(255, 255, 255, 0.16);
     margin-bottom: 20px;
   }
 
@@ -728,7 +728,7 @@
     }
 
     .page {
-      padding: 40px 26px 80px;
+      padding: 77px 26px 80px;
     }
 
     .page h1 {
@@ -760,6 +760,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-left: 10px;
     }
 
     .hero {
@@ -800,7 +801,7 @@
     }
 
     .page {
-      padding: 26px 20px 60px;
+      padding: 77px 20px 60px;
     }
 
     .page h1 {
@@ -921,7 +922,7 @@
             <div class="card-text">
               <span class="category">GitHub</span>
               <span class="title">
-                <span class="title-desktop">Connect GitHub to automate PR workflows,...</span>
+                <span class="title-desktop">Connect GitHub to<br>automate PR workflows,...</span>
                 <span class="title-tablet">Connect GitHub to automate PR workflows, review code in Linea...</span>
                 <span class="title-mobile">Connect GitHub to automate PR workflows, review code i...</span>
               </span>
@@ -1038,7 +1039,7 @@
   <!-- ================= FIGMA DETAIL VIEW ================= -->
   <main class="view page" id="figmaView">
     <p class="breadcrumb"><a href="#" id="backToGrid">Integrations</a> / Figma</p>
-    <h1>Create and link issues<br class="mobile-break">directly from Figma</h1>
+    <h1>Create and link issues <br class="mobile-break">directly from Figma</h1>
     <hr class="top-rule">
 
     <div class="detail-grid">
