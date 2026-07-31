@@ -378,8 +378,61 @@
     margin: 30px 0 40px;
   }
 
+  .carousel-mobile {
+    display: none;
+  }
+
   .mobile-break {
     display: none;
+  }
+
+  @media (max-width: 640px) {
+    .carousel {
+      display: none;
+    }
+
+    .carousel-mobile {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin: 0 -20px 48px;
+      padding: 0 20px;
+    }
+
+    .carousel-mobile::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-mobile-item {
+      flex: 0 0 82%;
+      scroll-snap-align: start;
+    }
+
+    .carousel-mobile-img {
+      aspect-ratio: 5 / 3;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #111214;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .carousel-mobile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-mobile-caption {
+      margin-top: 14px;
+      font-size: 13px;
+      font-style: italic;
+      color: #7d7d7d;
+      line-height: 1.5;
+    }
   }
 
   /* ---------- detail view: content grid ---------- */
@@ -420,15 +473,23 @@
     }
   }
 
-  .carousel-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.35s ease;
+  .carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
-  .carousel-slide.active {
-    opacity: 1;
+  .carousel-track.dragging {
+    transition: none !important;
+  }
+
+  .carousel-slide {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
   }
 
   .carousel-slide img {
@@ -436,14 +497,16 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none;
   }
 
   .carousel-caption {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
     margin-top: 14px;
+    min-height: 40px;
   }
 
   .caption-text {
@@ -696,7 +759,7 @@
     }
 
     .hero {
-      padding: 0.8in 20px 40px;
+      padding: 30px 20px 40px;
     }
 
     .hero h1 {
@@ -751,7 +814,7 @@
     }
 
     .carousel {
-      margin-bottom: 24px;
+      margin-bottom: 48px;
     }
 
     .mobile-break {
@@ -823,7 +886,7 @@
   <main class="view active" id="gridView">
     <section class="hero">
       <p class="breadcrumb">Integrations / Essentials</p>
-      <h1>Key integrations<br>to enhance your<br>Linear experience</h1>
+      <h1>Key integrations to enhance<br>your Linear experience</h1>
     </section>
 
     <section class="grid-wrapper">
@@ -960,7 +1023,7 @@
   <!-- ================= FIGMA DETAIL VIEW ================= -->
   <main class="view page" id="figmaView">
     <p class="breadcrumb"><a href="#" id="backToGrid">Integrations</a> / Figma</p>
-    <h1>Create and link issues<br class="mobile-break"> directly from Figma</h1>
+    <h1>Create and link issues<br class="mobile-break">directly from Figma</h1>
     <hr class="top-rule">
 
     <div class="detail-grid">
@@ -969,14 +1032,16 @@
 
         <div class="carousel">
           <div class="carousel-viewport" id="carouselViewport">
-            <div class="carousel-slide active">
-              <img src="https://webassets.linear.app/images/ornj730p/production/f773d7460a1c863fe058c0fff4d58ba4393fe8c0-1600x960.png?q=95&auto=format&dpr=2" alt="Linear and Figma logo showing both interfaces connected">
-            </div>
-            <div class="carousel-slide">
-              <img src="https://webassets.linear.app/images/ornj730p/production/9bde40b4998cd0e1ffe81e212b1bb795bffd9d43-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing the option to create issues in Linear">
-            </div>
-            <div class="carousel-slide">
-              <img src="https://webassets.linear.app/images/ornj730p/production/d91fe6cb8a23eb371fa6981615b8212e75075403-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing how to update status, assign issues, and filter and sort issues">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-slide">
+                <img src="https://webassets.linear.app/images/ornj730p/production/f773d7460a1c863fe058c0fff4d58ba4393fe8c0-1600x960.png?q=95&auto=format&dpr=2" alt="Linear and Figma logo showing both interfaces connected">
+              </div>
+              <div class="carousel-slide">
+                <img src="https://webassets.linear.app/images/ornj730p/production/9bde40b4998cd0e1ffe81e212b1bb795bffd9d43-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing the option to create issues in Linear">
+              </div>
+              <div class="carousel-slide">
+                <img src="https://webassets.linear.app/images/ornj730p/production/d91fe6cb8a23eb371fa6981615b8212e75075403-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing how to update status, assign issues, and filter and sort issues">
+              </div>
             </div>
           </div>
           <div class="carousel-caption">
@@ -992,15 +1057,36 @@
           </div>
         </div>
 
+        <div class="carousel-mobile">
+          <div class="carousel-mobile-item">
+            <div class="carousel-mobile-img">
+              <img src="https://webassets.linear.app/images/ornj730p/production/f773d7460a1c863fe058c0fff4d58ba4393fe8c0-1600x960.png?q=95&auto=format&dpr=2" alt="Linear and Figma logo showing both interfaces connected">
+            </div>
+            <p class="carousel-mobile-caption">Streamline work across design and engineering with the Figma plugin for Linear</p>
+          </div>
+          <div class="carousel-mobile-item">
+            <div class="carousel-mobile-img">
+              <img src="https://webassets.linear.app/images/ornj730p/production/9bde40b4998cd0e1ffe81e212b1bb795bffd9d43-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing the option to create issues in Linear">
+            </div>
+            <p class="carousel-mobile-caption">Create and link issues to frames, sections, and pages</p>
+          </div>
+          <div class="carousel-mobile-item">
+            <div class="carousel-mobile-img">
+              <img src="https://webassets.linear.app/images/ornj730p/production/d91fe6cb8a23eb371fa6981615b8212e75075403-2540x1520.png?q=95&auto=format&dpr=2" alt="Figma plugin showing how to update status, assign issues, and filter and sort issues">
+            </div>
+            <p class="carousel-mobile-caption">Update status and assign issues from the canvas</p>
+          </div>
+        </div>
+
         <section class="section">
           <h2>Overview</h2>
-          <p>Streamline design and development with integrated tooling for Figma. Install the Linear plugin for Figma to create and link issues to designs. You can also enable embedded previews of your designs in Linear issues and documents.</p>
+          <p>Streamline design and development with built-in tooling for Figma. Install the Linear plugin for Figma to create and link issues to your designs. You can also turn on embedded previews of your designs inside Linear issues and documents.</p>
         </section>
 
         <section class="section">
           <h2>Linear plugin for Figma</h2>
-          <p>Run the Linear plugin to see all Linear issues linked to your design in Figma. You can link individual frames, sections, and pages to existing Linear issues or create new issues directly from the canvas.</p>
-          <p>Selecting an issue takes you to the linked design and shows you key issues details related to it, letting you navigate designs in context and understand the current state of work. From the plugin, mark issues done or assign issues to team members when designs are ready for development. When an issue changes status in Linear, it is synced across to the plugin on Figma instantly.</p>
+          <p>Use the Linear plugin to see every Linear issue linked to your design in Figma. Link individual frames, sections, and pages to existing Linear issues, or create new issues right from the canvas.</p>
+          <p>Selecting an issue brings you to the linked design and shows key details about it, so you can navigate your designs in context and see the current state of work. From the plugin, mark issues as done or assign them to teammates once a design is ready for development. When an issue's status changes in Linear, the plugin on Figma updates instantly to match.</p>
         </section>
 
       </div>
@@ -1109,11 +1195,13 @@
     window.addEventListener('resize', syncCarouselHeight);
 
     /* ---------- carousel ---------- */
+    var track = document.getElementById('carouselTrack');
     var slides = document.querySelectorAll('.carousel-slide');
     var captionText = document.getElementById('captionText');
     var prevBtn = document.getElementById('prevBtn');
     var nextBtn = document.getElementById('nextBtn');
     var current = 0;
+    var slideCount = slides.length;
 
     var captions = [
       'Streamline work across design and engineering with the Figma plugin for Linear',
@@ -1121,34 +1209,59 @@
       'Update status and assign issues from the canvas'
     ];
 
-    function showSlide(index) {
-      slides[current].classList.remove('active');
-      current = (index + slides.length) % slides.length;
-      slides[current].classList.add('active');
+    function goToSlide(index) {
+      current = Math.max(0, Math.min(index, slideCount - 1));
+      track.style.transform = 'translateX(' + (-current * 100) + '%)';
       captionText.textContent = captions[current];
     }
 
-    prevBtn.addEventListener('click', function () { showSlide(current - 1); });
-    nextBtn.addEventListener('click', function () { showSlide(current + 1); });
+    prevBtn.addEventListener('click', function () { goToSlide(current - 1); });
+    nextBtn.addEventListener('click', function () { goToSlide(current + 1); });
 
-    /* ---------- swipe support ---------- */
-    var touchStartX = 0;
-    var touchEndX = 0;
+    /* ---------- swipe / drag support (story-style live follow) ---------- */
+    var dragging = false;
+    var startX = 0;
+    var dragDeltaPx = 0;
+    var viewportWidth = 0;
 
     carouselViewport.addEventListener('touchstart', function (e) {
-      touchStartX = e.changedTouches[0].screenX;
+      dragging = true;
+      startX = e.touches[0].clientX;
+      viewportWidth = carouselViewport.getBoundingClientRect().width;
+      track.classList.add('dragging');
     }, { passive: true });
 
-    carouselViewport.addEventListener('touchend', function (e) {
-      touchEndX = e.changedTouches[0].screenX;
-      var delta = touchEndX - touchStartX;
-      var threshold = 40;
-      if (delta > threshold) {
-        showSlide(current - 1);
-      } else if (delta < -threshold) {
-        showSlide(current + 1);
+    carouselViewport.addEventListener('touchmove', function (e) {
+      if (!dragging) return;
+      dragDeltaPx = e.touches[0].clientX - startX;
+
+      /* resist dragging past the first/last slide */
+      if ((current === 0 && dragDeltaPx > 0) || (current === slideCount - 1 && dragDeltaPx < 0)) {
+        dragDeltaPx = dragDeltaPx / 3;
       }
+
+      var baseOffsetPercent = -current * 100;
+      var dragOffsetPercent = (dragDeltaPx / viewportWidth) * 100;
+      track.style.transform = 'translateX(calc(' + baseOffsetPercent + '% + ' + dragDeltaPx + 'px))';
     }, { passive: true });
+
+    carouselViewport.addEventListener('touchend', function () {
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove('dragging');
+
+      var threshold = viewportWidth * 0.18;
+      if (dragDeltaPx < -threshold) {
+        goToSlide(current + 1);
+      } else if (dragDeltaPx > threshold) {
+        goToSlide(current - 1);
+      } else {
+        goToSlide(current);
+      }
+      dragDeltaPx = 0;
+    });
+
+    goToSlide(0);
   </script>
 
 </body>
