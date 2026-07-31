@@ -9,24 +9,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 <style>
 
-  /* ---------- design tokens (matched to linear.app) ---------- */
+  
   :root {
     --bg: #08090a;
     --text-primary: #f7f8f8;
     --text-secondary: #b4b4b4;
     --text-tertiary: #7d7d7d;
+
     --border-subtle: rgba(255, 255, 255, 0.05);
     --border-default: rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.15);
+    --border-rule: rgba(255, 255, 255, 0.16);
+    --border-hairline: rgba(255, 255, 255, 0.06);
+
     --surface: #111214;
     --surface-hover: #1c1d22;
+    --surface-hover-alt: rgba(255, 255, 255, 0.08);
+    --surface-hover-soft: rgba(255, 255, 255, 0.06);
+    --surface-hover-faint: rgba(255, 255, 255, 0.03);
+
+    --white: #ffffff;
+    --black: #000000;
+    --white-hover: #e4e4e4;
+
     --weight-regular: 400;
     --weight-medium: 510;
     --weight-semibold: 590;
-    --font-ui: "Inter Variable", "Inter", "Inter UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    --font-ui: "Inter Variable", "Inter", "Inter UI", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
 
-  /* ---------- basic reset ---------- */
+  
   * {
     margin: 0;
     padding: 0;
@@ -54,9 +68,16 @@
     font-family: inherit;
   }
 
-  /* ---------- navbar ---------- */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  
   .navbar-wrapper {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--border-default);
   }
 
   header.navbar {
@@ -89,7 +110,7 @@
 
   .nav-links a {
     font-size: 13px;
-    color: #b4b4b4;
+    color: var(--text-secondary);
     padding: 7px 12px;
     border-radius: 20px;
     transition: color 0.15s ease, background-color 0.15s ease;
@@ -97,8 +118,8 @@
 
   .nav-links a:hover,
   .nav-links a:focus-visible {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    background-color: var(--surface-hover-alt);
   }
 
   .nav-right {
@@ -121,7 +142,7 @@
 
   .login-link {
     font-size: 13px;
-    color: #b4b4b4;
+    color: var(--text-secondary);
     padding: 7px 12px;
     border-radius: 20px;
     transition: color 0.15s ease, background-color 0.15s ease;
@@ -129,13 +150,13 @@
 
   .login-link:hover,
   .login-link:focus-visible {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    background-color: var(--surface-hover-alt);
   }
 
   .signup-btn {
-    background: #ffffff;
-    color: #000000;
+    background: var(--white);
+    color: var(--black);
     font-size: 13px;
     font-weight: 500;
     padding: 7px 14px;
@@ -145,11 +166,11 @@
   }
 
   .signup-btn:hover {
-    background: #e4e4e4;
+    background: var(--white-hover);
   }
 
   .signup-btn:focus-visible {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--white);
     outline-offset: 2px;
   }
 
@@ -157,7 +178,7 @@
     display: none;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--white);
     font-size: 22px;
     cursor: pointer;
     opacity: 1;
@@ -166,13 +187,6 @@
 
   .hamburger:hover {
     opacity: 0.65;
-  }
-
-  a:focus-visible,
-  button:focus-visible {
-    outline: 2px solid #ffffff;
-    outline-offset: 3px;
-    border-radius: 4px;
   }
 
   .mobile-menu {
@@ -186,21 +200,21 @@
 
   .mobile-menu a {
     font-size: 15px;
-    color: #b4b4b4;
+    color: var(--text-secondary);
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--surface-hover-soft);
   }
 
   .mobile-menu a:hover,
   .mobile-menu a:focus-visible {
-    color: #ffffff;
+    color: var(--white);
   }
 
   .mobile-menu.open {
     display: flex;
   }
 
-  /* ---------- view visibility ---------- */
+  
   .view {
     display: none;
   }
@@ -209,7 +223,7 @@
     display: block;
   }
 
-  /* ---------- grid view: hero ---------- */
+  
   .hero {
     text-align: center;
     padding: 77px 20px 60px;
@@ -223,7 +237,7 @@
 
   .hero .breadcrumb {
     font-size: 14px;
-    color: #7d7d7d;
+    color: var(--text-tertiary);
     margin-bottom: 20px;
   }
 
@@ -238,7 +252,7 @@
     display: none;
   }
 
-  /* ---------- grid view: card grid ---------- */
+  
   .grid-wrapper {
     max-width: 1000px;
     margin: 0 auto;
@@ -255,24 +269,24 @@
   .card {
     display: flex;
     flex-direction: column;
-    background: #111214;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
     border-radius: 14px;
     cursor: pointer;
     transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
   }
 
   .card:hover {
-    background: #1c1d22;
+    background: var(--surface-hover);
   }
 
   .card:hover .card-arrow {
     border-color: transparent;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--surface-hover-faint);
   }
 
   .card:focus-visible {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--white);
     outline-offset: 3px;
   }
 
@@ -287,12 +301,12 @@
   .card-icon svg {
     width: 56px;
     height: 56px;
-    fill: #ffffff;
+    fill: var(--white);
   }
 
   .card-icon svg.icon-stroke {
     fill: none;
-    stroke: #ffffff;
+    stroke: var(--white);
     stroke-width: 1.6;
   }
 
@@ -302,7 +316,7 @@
     justify-content: space-between;
     gap: 10px;
     padding: 22px 20px 26px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--border-hairline);
     flex: 1;
   }
 
@@ -314,7 +328,7 @@
     display: block;
     font-size: 13px;
     font-weight: 600;
-    color: #7d7d7d;
+    color: var(--text-tertiary);
     margin-bottom: 8px;
   }
 
@@ -324,6 +338,7 @@
     line-height: 1.35;
   }
 
+  
   .title-tablet,
   .title-mobile {
     display: none;
@@ -334,7 +349,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--border-strong);
     transition: border-color 0.2s ease, background-color 0.2s ease;
     display: flex;
     align-items: center;
@@ -345,11 +360,11 @@
     width: 14px;
     height: 14px;
     fill: none;
-    stroke: #b4b4b4;
+    stroke: var(--text-secondary);
     stroke-width: 2;
   }
 
-  /* ---------- detail view: page wrapper ---------- */
+  
   .page {
     max-width: 1000px;
     margin: 0 auto;
@@ -368,7 +383,7 @@
   }
 
   .breadcrumb a:hover {
-    color: #ffffff;
+    color: var(--white);
     text-decoration: underline;
   }
 
@@ -384,7 +399,7 @@
 
   .top-rule {
     border: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.16);
+    border-top: 2px solid var(--border-rule);
     margin: 30px 0 40px;
   }
 
@@ -425,8 +440,8 @@
       aspect-ratio: 5 / 3;
       border-radius: 14px;
       overflow: hidden;
-      background: #111214;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--surface);
+      border: 1px solid var(--border-hairline);
     }
 
     .carousel-mobile-img img {
@@ -440,12 +455,12 @@
       margin-top: 14px;
       font-size: 13px;
       font-style: italic;
-      color: #7d7d7d;
+      color: var(--text-tertiary);
       line-height: 1.5;
     }
   }
 
-  /* ---------- detail view: content grid ---------- */
+  
   .detail-grid {
     display: grid;
     grid-template-columns: 1fr 260px;
@@ -463,7 +478,7 @@
     grid-area: sidebar;
   }
 
-  /* ---------- carousel ---------- */
+  
   .carousel {
     margin-bottom: 30px;
   }
@@ -473,8 +488,8 @@
     aspect-ratio: 5 / 3;
     border-radius: 14px;
     overflow: hidden;
-    background: #111214;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: var(--surface);
+    border: 1px solid var(--border-hairline);
   }
 
   @media (min-width: 641px) {
@@ -522,7 +537,7 @@
   .caption-text {
     font-size: 13px;
     font-style: italic;
-    color: #7d7d7d;
+    color: var(--text-tertiary);
     line-height: 1.5;
   }
 
@@ -537,9 +552,9 @@
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--border-strong);
     background: transparent;
-    color: #b4b4b4;
+    color: var(--text-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -548,8 +563,8 @@
   }
 
   .carousel-btn:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.06);
+    color: var(--white);
+    background: var(--surface-hover-soft);
   }
 
   .carousel-btn svg {
@@ -560,7 +575,7 @@
     stroke-width: 2;
   }
 
-  /* ---------- text sections ---------- */
+  
   .section {
     margin-bottom: 34px;
   }
@@ -584,7 +599,7 @@
     margin-top: 14px;
   }
 
-  /* ---------- sidebar ---------- */
+  
   .app-header {
     display: flex;
     align-items: center;
@@ -599,7 +614,7 @@
     flex-shrink: 0;
     display: block;
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-hairline);
   }
 
   .app-name {
@@ -614,7 +629,7 @@
     width: 13px;
     height: 13px;
     flex-shrink: 0;
-    color: #7d7d7d;
+    color: var(--text-tertiary);
   }
 
   .app-by {
@@ -622,13 +637,13 @@
     align-items: center;
     gap: 5px;
     font-size: 13px;
-    color: #7d7d7d;
+    color: var(--text-tertiary);
     margin-top: 2px;
   }
 
   .sidebar-rule {
     border: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.16);
+    border-top: 2px solid var(--border-rule);
     margin-bottom: 20px;
   }
 
@@ -639,32 +654,32 @@
   .meta-label {
     font-size: 13px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--white);
     margin-bottom: 5px;
   }
 
   .meta-value {
     font-size: 13px;
-    color: #7d7d7d;
+    color: var(--text-tertiary);
     line-height: 1.6;
   }
 
   .meta-value a,
   a.meta-value {
-    color: #7d7d7d;
+    color: var(--text-tertiary);
     transition: color 0.15s ease;
   }
 
   .meta-value a:hover,
   a.meta-value:hover {
-    color: #ffffff;
+    color: var(--white);
     text-decoration: underline;
   }
 
   .add-btn {
     width: 100%;
-    background: #ffffff;
-    color: #000000;
+    background: var(--white);
+    color: var(--black);
     font-size: 13px;
     font-weight: 500;
     padding: 10px 14px;
@@ -676,10 +691,10 @@
   }
 
   .add-btn:hover {
-    background: #e4e4e4;
+    background: var(--white-hover);
   }
 
-  /* ---------- tablet ---------- */
+  
   @media (max-width: 900px) {
     .card-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -748,7 +763,7 @@
     }
   }
 
-  /* ---------- mobile ---------- */
+  
   @media (max-width: 640px) {
     header.navbar {
       padding: 16px 20px;
@@ -829,7 +844,7 @@
 
     .sidebar {
       padding-bottom: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid var(--border-default);
     }
 
     .carousel {
@@ -859,6 +874,7 @@
 </head>
 <body>
 
+  
   <div class="navbar-wrapper">
     <header class="navbar">
       <a href="#" class="logo" id="logoLink">
@@ -901,7 +917,7 @@
     <a href="#">Contact</a>
   </nav>
 
-  <!-- ================= GRID VIEW ================= -->
+  
   <main class="view active" id="gridView">
     <section class="hero">
       <p class="breadcrumb">Integrations / Essentials</p>
@@ -1040,7 +1056,7 @@
     </section>
   </main>
 
-  <!-- ================= FIGMA DETAIL VIEW ================= -->
+  
   <main class="view page" id="figmaView">
     <p class="breadcrumb"><a href="#" id="backToGrid">Integrations</a> / Figma</p>
     <h1>Create and link issues <br class="mobile-break">directly from Figma</h1>
@@ -1050,6 +1066,7 @@
 
       <div class="main-content">
 
+        
         <div class="carousel">
           <div class="carousel-viewport" id="carouselViewport">
             <div class="carousel-track" id="carouselTrack">
@@ -1077,6 +1094,7 @@
           </div>
         </div>
 
+        
         <div class="carousel-mobile">
           <div class="carousel-mobile-item">
             <div class="carousel-mobile-img">
@@ -1157,131 +1175,137 @@
   </main>
 
   <script>
-    var hamburgerBtn = document.getElementById('hamburgerBtn');
-    var menu = document.getElementById('mobileMenu');
+    (function () {
+      'use strict';
 
-    hamburgerBtn.addEventListener('click', function () {
-      var isOpen = menu.classList.toggle('open');
-      hamburgerBtn.setAttribute('aria-expanded', isOpen);
-    });
+      
+      var hamburgerBtn = document.getElementById('hamburgerBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
 
-    /* ---------- view switching ---------- */
-    var gridView = document.getElementById('gridView');
-    var figmaView = document.getElementById('figmaView');
-    var figmaCard = document.getElementById('figmaCard');
-    var backToGrid = document.getElementById('backToGrid');
-    var logoLink = document.getElementById('logoLink');
+      hamburgerBtn.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.toggle('open');
+        hamburgerBtn.setAttribute('aria-expanded', isOpen);
+      });
 
-    function showFigmaView() {
-      gridView.classList.remove('active');
-      figmaView.classList.add('active');
-      window.scrollTo(0, 0);
-      syncCarouselHeight();
-    }
+      
+      var gridView = document.getElementById('gridView');
+      var figmaView = document.getElementById('figmaView');
+      var figmaCard = document.getElementById('figmaCard');
+      var backToGrid = document.getElementById('backToGrid');
+      var logoLink = document.getElementById('logoLink');
+      var sidebarEl = document.querySelector('#figmaView .sidebar');
+      var carouselViewport = document.getElementById('carouselViewport');
 
-    function showGridView() {
-      figmaView.classList.remove('active');
-      gridView.classList.add('active');
-      window.scrollTo(0, 0);
-    }
-
-    figmaCard.addEventListener('click', function (e) {
-      e.preventDefault();
-      showFigmaView();
-    });
-
-    backToGrid.addEventListener('click', function (e) {
-      e.preventDefault();
-      showGridView();
-    });
-
-    logoLink.addEventListener('click', function (e) {
-      e.preventDefault();
-      showGridView();
-    });
-
-    /* ---------- align image height with sidebar (Add to Linear button) ---------- */
-    var sidebarEl = document.querySelector('#figmaView .sidebar');
-    var carouselViewport = document.getElementById('carouselViewport');
-
-    function syncCarouselHeight() {
-      if (window.innerWidth > 640) {
-        carouselViewport.style.height = sidebarEl.offsetHeight + 'px';
-      } else {
-        carouselViewport.style.height = '';
-      }
-    }
-
-    window.addEventListener('resize', syncCarouselHeight);
-
-    /* ---------- carousel ---------- */
-    var track = document.getElementById('carouselTrack');
-    var slides = document.querySelectorAll('.carousel-slide');
-    var captionText = document.getElementById('captionText');
-    var prevBtn = document.getElementById('prevBtn');
-    var nextBtn = document.getElementById('nextBtn');
-    var current = 0;
-    var slideCount = slides.length;
-
-    var captions = [
-      'Streamline work across design and engineering with the Figma plugin for Linear',
-      'Create and link issues to frames, sections, and pages',
-      'Update status and assign issues from the canvas'
-    ];
-
-    function goToSlide(index) {
-      current = Math.max(0, Math.min(index, slideCount - 1));
-      track.style.transform = 'translateX(' + (-current * 100) + '%)';
-      captionText.textContent = captions[current];
-    }
-
-    prevBtn.addEventListener('click', function () { goToSlide(current - 1); });
-    nextBtn.addEventListener('click', function () { goToSlide(current + 1); });
-
-    /* ---------- swipe / drag support (story-style live follow) ---------- */
-    var dragging = false;
-    var startX = 0;
-    var dragDeltaPx = 0;
-    var viewportWidth = 0;
-
-    carouselViewport.addEventListener('touchstart', function (e) {
-      dragging = true;
-      startX = e.touches[0].clientX;
-      viewportWidth = carouselViewport.getBoundingClientRect().width;
-      track.classList.add('dragging');
-    }, { passive: true });
-
-    carouselViewport.addEventListener('touchmove', function (e) {
-      if (!dragging) return;
-      dragDeltaPx = e.touches[0].clientX - startX;
-
-      /* resist dragging past the first/last slide */
-      if ((current === 0 && dragDeltaPx > 0) || (current === slideCount - 1 && dragDeltaPx < 0)) {
-        dragDeltaPx = dragDeltaPx / 3;
+      function syncCarouselHeight() {
+        if (window.innerWidth > 640) {
+          carouselViewport.style.height = sidebarEl.offsetHeight + 'px';
+        } else {
+          carouselViewport.style.height = '';
+        }
       }
 
-      var baseOffsetPercent = -current * 100;
-      var dragOffsetPercent = (dragDeltaPx / viewportWidth) * 100;
-      track.style.transform = 'translateX(calc(' + baseOffsetPercent + '% + ' + dragDeltaPx + 'px))';
-    }, { passive: true });
-
-    carouselViewport.addEventListener('touchend', function () {
-      if (!dragging) return;
-      dragging = false;
-      track.classList.remove('dragging');
-
-      var threshold = viewportWidth * 0.18;
-      if (dragDeltaPx < -threshold) {
-        goToSlide(current + 1);
-      } else if (dragDeltaPx > threshold) {
-        goToSlide(current - 1);
-      } else {
-        goToSlide(current);
+      function showFigmaView() {
+        gridView.classList.remove('active');
+        figmaView.classList.add('active');
+        window.scrollTo(0, 0);
+        syncCarouselHeight();
       }
-      dragDeltaPx = 0;
-    });
 
-    goToSlide(0);
+      function showGridView() {
+        figmaView.classList.remove('active');
+        gridView.classList.add('active');
+        window.scrollTo(0, 0);
+      }
+
+      figmaCard.addEventListener('click', function (e) {
+        e.preventDefault();
+        showFigmaView();
+      });
+
+      backToGrid.addEventListener('click', function (e) {
+        e.preventDefault();
+        showGridView();
+      });
+
+      logoLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        showGridView();
+      });
+
+      window.addEventListener('resize', syncCarouselHeight);
+
+      
+      var track = document.getElementById('carouselTrack');
+      var slides = document.querySelectorAll('.carousel-slide');
+      var captionText = document.getElementById('captionText');
+      var prevBtn = document.getElementById('prevBtn');
+      var nextBtn = document.getElementById('nextBtn');
+      var slideCount = slides.length;
+      var current = 0;
+
+      var captions = [
+        'Streamline work across design and engineering with the Figma plugin for Linear',
+        'Create and link issues to frames, sections, and pages',
+        'Update status and assign issues from the canvas'
+      ];
+
+      function goToSlide(index) {
+        current = Math.max(0, Math.min(index, slideCount - 1));
+        track.style.transform = 'translateX(' + (-current * 100) + '%)';
+        captionText.textContent = captions[current];
+      }
+
+      prevBtn.addEventListener('click', function () { goToSlide(current - 1); });
+      nextBtn.addEventListener('click', function () { goToSlide(current + 1); });
+
+      
+      var dragging = false;
+      var startX = 0;
+      var dragDeltaPx = 0;
+      var viewportWidth = 0;
+      var DRAG_THRESHOLD_RATIO = 0.18;
+      var EDGE_RESISTANCE = 3;
+
+      carouselViewport.addEventListener('touchstart', function (e) {
+        dragging = true;
+        startX = e.touches[0].clientX;
+        viewportWidth = carouselViewport.getBoundingClientRect().width;
+        track.classList.add('dragging');
+      }, { passive: true });
+
+      carouselViewport.addEventListener('touchmove', function (e) {
+        if (!dragging) return;
+
+        dragDeltaPx = e.touches[0].clientX - startX;
+
+        var atFirstSlide = current === 0 && dragDeltaPx > 0;
+        var atLastSlide = current === slideCount - 1 && dragDeltaPx < 0;
+        if (atFirstSlide || atLastSlide) {
+          dragDeltaPx = dragDeltaPx / EDGE_RESISTANCE;
+        }
+
+        var baseOffsetPercent = -current * 100;
+        track.style.transform = 'translateX(calc(' + baseOffsetPercent + '% + ' + dragDeltaPx + 'px))';
+      }, { passive: true });
+
+      carouselViewport.addEventListener('touchend', function () {
+        if (!dragging) return;
+        dragging = false;
+        track.classList.remove('dragging');
+
+        var threshold = viewportWidth * DRAG_THRESHOLD_RATIO;
+        if (dragDeltaPx < -threshold) {
+          goToSlide(current + 1);
+        } else if (dragDeltaPx > threshold) {
+          goToSlide(current - 1);
+        } else {
+          goToSlide(current);
+        }
+        dragDeltaPx = 0;
+      });
+
+      goToSlide(0);
+    })();
   </script>
 
 </body>
