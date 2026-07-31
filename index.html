@@ -212,7 +212,7 @@
   /* ---------- grid view: hero ---------- */
   .hero {
     text-align: center;
-    padding: 40px 20px 60px;
+    padding: 77px 20px 60px;
   }
 
   .hero .breadcrumb {
@@ -226,6 +226,10 @@
     line-height: 1.2;
     font-weight: 600;
     margin: 0 auto;
+  }
+
+  .heading-mobile {
+    display: none;
   }
 
   /* ---------- grid view: card grid ---------- */
@@ -759,11 +763,19 @@
     }
 
     .hero {
-      padding: 30px 20px 40px;
+      padding: 77px 20px 40px;
     }
 
     .hero h1 {
       font-size: 26px;
+    }
+
+    .heading-default {
+      display: none;
+    }
+
+    .heading-mobile {
+      display: block;
     }
 
     .grid-wrapper {
@@ -886,7 +898,10 @@
   <main class="view active" id="gridView">
     <section class="hero">
       <p class="breadcrumb">Integrations / Essentials</p>
-      <h1>Key integrations to enhance<br>your Linear experience</h1>
+      <h1>
+        <span class="heading-default">Key integrations to enhance<br>your Linear experience</span>
+        <span class="heading-mobile">Key integrations<br>to enhance your<br>Linear experience</span>
+      </h1>
     </section>
 
     <section class="grid-wrapper">
